@@ -18,17 +18,23 @@
         android:layout_height="wrap_content"
         android:text="@string/name"/>
     <EditText
+
         android:id="@+id/inputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="20"
-        android:inputType="textPersonName"/>
+        android:inputType="textPersonName">
+
+        <requestFocus/>
+    </EditText>
+
+
     <TextView
         android:id="@+id/lblNameCharsLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="@string/CharsDefault"/>
+        android:maxLength="@integer/maxLength" />
     <TextView
         android:id="@+id/lblSurname"
         android:layout_width="wrap_content"
@@ -39,14 +45,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="20"
-        android:inputType="textPersonName"
-        />
+        android:inputType="textPersonName" />
+
     <TextView
         android:id="@+id/lblSurnameCharsLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="@string/CharsDefault"/>
+        android:maxLength="@integer/maxLength"
+        />
     <TextView
         android:id="@+id/lblTreatment"
         android:layout_width="wrap_content"

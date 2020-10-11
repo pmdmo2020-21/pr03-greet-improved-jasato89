@@ -1,8 +1,11 @@
 package es.iessaladillo.pedrojoya.pr02_greetimproved;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
+import es.iessaladillo.pedrojoya.pr02_greetimproved.utils.SoftInputUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +16,10 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityBinding binding;
     String treatment = "", name, surname;
     int count = 0;
+    int charCount = 20;
     boolean polite = false;
+    private TextWatcher nameWatcher;
+    private TextWatcher surnameWatcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +28,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setupViews();
         checkPremium();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
     }
 
     private void setupViews() {
 
-        binding.lblCountBar.setText(R.string.countBarText);
         binding.rdgTreatment.setOnCheckedChangeListener((radioGroup, i) -> checkTreatment());
         binding.greetBtn.setOnClickListener(l -> printResult());
         binding.checkGreetStyle.setOnClickListener(l -> checkStyle());
         binding.lblpremiumSwitcher.setOnClickListener(l -> showBar());
+        binding.lblCountBar.setText(R.string.countBarText);
+        binding.lblNameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, charCount, charCount));
+        binding.lblSurnameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, charCount, charCount));
+
+
     }
 
     private void checkTreatment() {
@@ -51,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void printResult() {
         name = binding.inputName.getText().toString();
         surname = binding.inputSurname.getText().toString();
+        SoftInputUtils.hideSoftKeyboard(binding.inputSurname);
         if (count > 10) {
             Toast.makeText(this, getString(R.string.buyPremium), Toast.LENGTH_SHORT).show();
         }else if(!name.isEmpty() && !surname.isEmpty()) {

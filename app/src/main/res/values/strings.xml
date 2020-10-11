@@ -14,9 +14,5 @@
         <string name="greetInformal">Hello %1$s %2$s. What\'s Up?</string>
         <string name="greetFormal">Good Morning %1$s %2$s %3$s. Pleased to meet you</string>
         <string name="buyPremium">Buy premium subscription to go on greeting!</string>
-        <string name="CharsDefault">1%d chars left</string>
-        <plurals name="CharsLeft">
-            <item quantity="one"> %1d character left</item>
-            <item quantity="other"> %1d characters left</item>
-        </plurals>
+
 </resources>
