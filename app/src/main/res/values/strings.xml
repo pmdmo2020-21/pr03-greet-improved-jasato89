@@ -1,3 +1,22 @@
+
 <resources>
-    <string name="app_name">Greet Improved</string>
+        <string name="app_name">Greet Improved</string>
+        <string name="premium">Premium</string>
+        <string name="name">Name:</string>
+        <string name="surname">Surname</string>
+        <string name="treatment">Treatment:</string>
+        <string name="Mr">Mr.</string>
+        <string name="Mrs">Mrs.</string>
+        <string name="Ms">Ms.</string>
+        <string name="Greet">Greet</string>
+        <string name="GreetStyle">Politely</string>
+        <string name="countBarText">%1$d of 10</string>
+        <string name="greetInformal">Hello %1$s %2$s. What\'s Up?</string>
+        <string name="greetFormal">Good Morning %1$s %2$s %3$s. Pleased to meet you</string>
+        <string name="buyPremium">Buy premium subscription to go on greeting!</string>
+        <string name="CharsDefault">1%d chars left</string>
+        <plurals name="CharsLeft">
+            <item quantity="one"> %1d character left</item>
+            <item quantity="other"> %1d characters left</item>
+        </plurals>
 </resources>

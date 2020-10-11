@@ -5,6 +5,115 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- TODO -->
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/lblpremiumSwitcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/premium"/>
 
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"/>
+    <EditText
+        android:id="@+id/inputName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="20"
+        android:inputType="textPersonName"/>
+    <TextView
+        android:id="@+id/lblNameCharsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/CharsDefault"/>
+    <TextView
+        android:id="@+id/lblSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/surname"/>
+    <EditText
+        android:id="@+id/inputSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="20"
+        android:inputType="textPersonName"
+        />
+    <TextView
+        android:id="@+id/lblSurnameCharsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/CharsDefault"/>
+    <TextView
+        android:id="@+id/lblTreatment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/treatment"/>
+    <RadioGroup
+        android:id="@+id/rdgTreatment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/imgTreatment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mr"
+            android:paddingTop="3dp"
+            android:paddingRight="5dp"/>
+        <RadioButton
+            android:id="@+id/rdMr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Mr"/>
+        <RadioButton
+            android:id="@+id/rdMrs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Mrs"/>
+        <RadioButton
+            android:id="@+id/rdMs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Ms"/>
+
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/checkGreetStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GreetStyle"/>
+
+    <Button
+        android:id="@+id/greetBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Greet"/>
+
+    <ProgressBar
+        android:id="@+id/progresBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="10"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+    <TextView
+        android:id="@+id/lblCountBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/countBarText"/>
+
+    <TextView
+        android:id="@+id/lblOutputGreet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Title"/>
 </LinearLayout>
