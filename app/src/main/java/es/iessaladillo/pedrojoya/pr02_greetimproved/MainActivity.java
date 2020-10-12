@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MainActivityBinding binding;
     String treatment = "", name, surname;
-    int maxLength = 20;
+    int maxLength;
     int count = 0;
     int nameCharsLeft, surnameCharsLeft;
     boolean polite = false;
@@ -46,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
         binding.lblpremiumSwitcher.setOnClickListener(l -> showBar());
         binding.inputName.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         binding.inputSurname.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+        binding.inputSurname.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                printResult();
+                return true;
+            }
+        });
 
 
 
@@ -57,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         nameCharsLeft = 20;
         surnameCharsLeft = 20;
+        maxLength = 20;
         binding.lblNameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, nameCharsLeft, nameCharsLeft));
         binding.lblSurnameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, surnameCharsLeft, surnameCharsLeft));
         binding.lblCountBar.setText(R.string.countBarText);
@@ -121,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.inputSurname.setOnFocusChangeListener((v, hasFocus) ->
                 changeTextViewColor(hasFocus, binding.inputSurname, binding.lblSurnameCharsLeft));
+
 
 
     }

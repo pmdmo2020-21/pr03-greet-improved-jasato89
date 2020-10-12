@@ -39,6 +39,7 @@
         android:id="@+id/lblSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
         android:text="@string/surname"/>
     <EditText
         android:id="@+id/inputSurname"
