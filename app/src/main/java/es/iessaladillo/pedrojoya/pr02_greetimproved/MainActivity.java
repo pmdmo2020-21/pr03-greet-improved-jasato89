@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr02_greetimproved;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MainActivityBinding binding;
     String treatment = "", name, surname;
+    int maxLength = 20;
     int count = 0;
     int nameCharsLeft, surnameCharsLeft;
     boolean polite = false;
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         binding.greetBtn.setOnClickListener(l -> printResult());
         binding.checkGreetStyle.setOnClickListener(l -> checkStyle());
         binding.lblpremiumSwitcher.setOnClickListener(l -> showBar());
+        binding.inputName.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+        binding.inputSurname.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+
 
 
 
@@ -66,8 +71,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                nameCharsLeft--;
-                binding.lblNameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, nameCharsLeft, nameCharsLeft));
+                int ch = nameCharsLeft - s.length();
+                binding.lblNameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, ch, ch));
+
 
             }
 
@@ -87,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                int ch = surnameCharsLeft - s.length();
+                binding.lblSurnameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, ch, ch));
+
 
             }
 
