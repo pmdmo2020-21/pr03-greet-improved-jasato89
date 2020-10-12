@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import es.iessaladillo.pedrojoya.pr02_greetimproved.utils.SoftInputUtils;
 
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityBinding binding;
     String treatment = "", name, surname;
     int count = 0;
-    int charCount = 20;
+    int nameCharsLeft, surnameCharsLeft;
     boolean polite = false;
     private TextWatcher nameWatcher;
     private TextWatcher surnameWatcher;
@@ -32,25 +34,120 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-
-    }
 
     private void setupViews() {
-
+        defaultValues();
         binding.rdgTreatment.setOnCheckedChangeListener((radioGroup, i) -> checkTreatment());
         binding.greetBtn.setOnClickListener(l -> printResult());
         binding.checkGreetStyle.setOnClickListener(l -> checkStyle());
         binding.lblpremiumSwitcher.setOnClickListener(l -> showBar());
-        binding.lblCountBar.setText(R.string.countBarText);
-        binding.lblNameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, charCount, charCount));
-        binding.lblSurnameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, charCount, charCount));
+
+
 
 
     }
+
+    private void defaultValues() {
+
+        nameCharsLeft = 20;
+        surnameCharsLeft = 20;
+        binding.lblNameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, nameCharsLeft, nameCharsLeft));
+        binding.lblSurnameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, surnameCharsLeft, surnameCharsLeft));
+        binding.lblCountBar.setText(R.string.countBarText);
+
+
+        nameWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                nameCharsLeft--;
+                binding.lblNameCharsLeft.setText(getResources().getQuantityString(R.plurals.CharsLeft, nameCharsLeft, nameCharsLeft));
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                checkValue(binding.inputName);
+
+            }
+        };
+
+        surnameWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                checkValue(binding.inputSurname);
+
+            }
+        };
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+
+        binding.inputName.addTextChangedListener(nameWatcher);
+        binding.inputSurname.addTextChangedListener(surnameWatcher);
+
+        binding.inputName.setOnFocusChangeListener((v, hasFocus) ->
+                changeTextViewColor(hasFocus, binding.inputName, binding.lblNameCharsLeft));
+
+        binding.inputSurname.setOnFocusChangeListener((v, hasFocus) ->
+                changeTextViewColor(hasFocus, binding.inputSurname, binding.lblSurnameCharsLeft));
+
+
+    }
+
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+        binding.inputName.removeTextChangedListener(nameWatcher);
+        binding.inputSurname.removeTextChangedListener(surnameWatcher);
+
+        binding.inputName.setOnFocusChangeListener(null);
+        binding.inputSurname.setOnFocusChangeListener(null);
+    }
+
+    private void changeTextViewColor(boolean hasFocus, EditText inputName, TextView textView) {
+
+        if(hasFocus) {
+            textView.setTextColor(getResources().getColor(R.color.colorAccent));
+
+        } else {
+            textView.setTextColor(getResources().getColor(R.color.textPrimary));
+        }
+
+    }
+
+    private boolean checkValue(EditText inputName) {
+
+        if (!inputName.getText().toString().equalsIgnoreCase("")) {
+            inputName.setError(null);
+            return true;
+        } else {
+            inputName.setError(getString(R.string.required));
+            return false;
+        }
+        }
+
 
     private void checkTreatment() {
         if (binding.rdMr.isChecked()) {

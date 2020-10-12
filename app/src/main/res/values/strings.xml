@@ -14,5 +14,6 @@
         <string name="greetInformal">Hello %1$s %2$s. What\'s Up?</string>
         <string name="greetFormal">Good Morning %1$s %2$s %3$s. Pleased to meet you</string>
         <string name="buyPremium">Buy premium subscription to go on greeting!</string>
+    <string name="required">Requerido</string>
 
 </resources>
